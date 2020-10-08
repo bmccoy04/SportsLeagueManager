@@ -1,0 +1,49 @@
+@page "/leagues/add"
+
+@inject NavigationManager NavigationManager
+
+<h3>Add League</h3>
+<section>
+    <EditForm Model="@AddLeagueModel" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="name"></label>
+            <InputText id="name"
+                       @bind-Value="AddLeagueModel.Name"
+                       class="form-control col-sm-4"
+                       placeholder="League Name">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <label for="startDate"></label>
+            <InputDate id="startDate"
+                       @bind-Value="AddLeagueModel.StartDate"
+                       class="form-control col-sm-4"
+                       placeholder="Start Date">
+            </InputDate>
+        </div>
+        <div class="form-group">
+            <label for="endDate"></label>
+            <InputDate id="endDate"
+                       @bind-Value="AddLeagueModel.EndDate"
+                       class="form-control col-sm-4"
+                       placeholder="End Date">
+            </InputDate>
+        </div>
+    </EditForm>
+</section>
+<div class="form-group">
+    <button type="submit" class="btn btn-primary edit-btn">Save</button>
+    <NavLink href="leagues/manage" class="btn btn-default edit-bin">
+        Cacncel
+    </NavLink>
+</div>
+
+@code {
+    private AddLeagueModel AddLeagueModel { get; set; } = new AddLeagueModel();
+    private void HandleValidSubmit()
+    {
+       NavigationManager.NavigateTo("leagues/manage"); 
+    }
+}
